@@ -1,32 +1,31 @@
-NormalParticle[] stars;
+Normal[] stars= new Normal[100];
 void setup()
 {
   size(500, 500);
-  stars = new NormalParticle[10];
-  for (int i = 0; i < NormalParticle.length; i++)
+  for (int i = 0; i < 100; i++)
   {
-    stars[i] = new NormalParticle();
+    stars[i] = new Normal();
   }
 }
 void draw()
 {
   background(0);
-  for (int i = 0; i < NormalParticle.length; i++)
+  for (int i = 0; i < 100; i++)
   {
     stars[i].show();
     stars[i].move();
   }
 }
-class NormalParticle implements Particle
+class Normal //implements Particle
 {
   int npColor; 
   double npX, npY, npSpeed, npAngle; //if x and y are int, they show up as a grid
-  NormalParticle()
+  Normal()
   {
     npColor = color(255); 
-    npX = Math.random()*255; 
-    npY = Math.random()*255; 
-    npSpeed = Math.random()*10; 
+    npX = 250; 
+    npY = 250; 
+    npSpeed = Math.random()*2; 
     npAngle = Math.PI * 2 * Math.random();
   }
   public void move()
@@ -40,16 +39,19 @@ class NormalParticle implements Particle
     ellipse((float)npX, (float)npY, 5, 5);
   }
 }
-interface Particle
-{
-  public void show(); 
-  public void move();
-}
+//interface Particle
+//{
+//  public void show(); 
+//  public void move();
+//}
 //class OddballParticle //uses an interface
 //{
 //  //your code here
 //}
-//class JumboParticle //uses inheritance
+//class JumboParticle extends Normal //uses inheritance
 //{
-//  //your code here
+//  public void show()
+//{
+//  
+//}
 //}
