@@ -1,8 +1,9 @@
-Normal[] stars= new Normal[1000];
+Normal[] stars= new Normal[10000];
+Oddball odd = new Oddball();
 void setup()
 {
   size(600, 600);
-  for (int i = 0; i < 1000; i++)
+  for (int i = 0; i < 10000; i++)
   {
     stars[i] = new Normal();
   }
@@ -10,19 +11,26 @@ void setup()
 void draw()
 {
   background(0);
-  for (int i = 0; i < 1000; i++)
+  odd.show();
+  odd.move();
+  for (int i = 0; i < 10000; i++)
   {
     stars[i].show();
     stars[i].move();
   }
 }
-class Normal //implements Particle
+interface Particle
 {
-  int npColor; 
+  public void show(); 
+  public void move();
+}
+class Normal implements Particle
+{
+  int nColor; 
   double nX, nY, nSpeed, nAngle; //if x and y are int, they show up as a grid
   Normal()
   {
-    npColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)); 
+    nColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)); 
     nX = 300; 
     nY = 300; 
     nSpeed = Math.random()*3; 
@@ -36,33 +44,35 @@ class Normal //implements Particle
   public void show()
   {
     noStroke();
+    fill(nColor);
     ellipse((float)nX, (float)nY, 3, 3);
   }
 }
-//interface Particle
-//{
-//  public void show(); 
-//  public void move();
-//}
-class Oddball //uses an interface
+class Oddball implements Particle
 {
-  double oX, oY;
+  double oX, oY, oSpeed, oAngle;
   Oddball()
   {
-    oX = Math.random()*600;
-    oY = Math.random()*600;
+    oX = (Math.random()*600);
+    oY = (Math.random()*40)-50;
+    oSpeed = Math.random()*20;
+    oAngle = Math.PI * 2 * Math.random();
   }
   public void move()
   {
+    oX = oX + (Math.cos(oAngle) * oSpeed); 
+    oY = oY + (Math.sin(oAngle) * oSpeed);
   }
   public void show()
   {
+    fill(255);
+    ellipse((float)oX, (float)oY, 20, 20);
   }
 }
-//class JumboParticle extends Normal //uses inheritance
-//{
-//  public void show()
-//{
-//  
-//}
-//}
+class Jumbo extends Normal //uses inheritance
+{
+  int jX, jY;
+  Jumbo()
+  {
+  }
+}
