@@ -1,9 +1,9 @@
-Normal[] stars= new Normal[10000];
+Normal[] stars= new Normal[1000];
 Oddball odd = new Oddball();
 void setup()
 {
   size(600, 600);
-  for (int i = 0; i < 10000; i++)
+  for (int i = 0; i < 1000; i++)
   {
     stars[i] = new Normal();
   }
@@ -13,7 +13,7 @@ void draw()
   background(0);
   odd.show();
   odd.move();
-  for (int i = 0; i < 10000; i++)
+  for (int i = 0; i < 1000; i++)
   {
     stars[i].show();
     stars[i].move();
