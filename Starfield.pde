@@ -1,5 +1,6 @@
 Normal[] stars= new Normal[1000];
 Oddball odd = new Oddball();
+Jumbo jum = new Jumbo();
 void setup()
 {
   size(600, 600);
@@ -13,6 +14,8 @@ void draw()
   background(0);
   odd.show();
   odd.move();
+  jum.show();
+  jum.move();
   for (int i = 0; i < 1000; i++)
   {
     stars[i].show();
@@ -26,11 +29,12 @@ interface Particle
 }
 class Normal implements Particle
 {
-  int nColor; 
+  int nColor, nSize; 
   double nX, nY, nSpeed, nAngle; //if x and y are int, they show up as a grid
   Normal()
   {
-    nColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)); 
+    nColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
+    nSize = (int)(Math.random()*8);
     nX = 300; 
     nY = 300; 
     nSpeed = Math.random()*3; 
@@ -45,7 +49,7 @@ class Normal implements Particle
   {
     noStroke();
     fill(nColor);
-    ellipse((float)nX, (float)nY, 3, 3);
+    ellipse((float)nX, (float)nY, (int)(Math.random()*8), (int)(Math.random()*8)); //if you replace nSize with (int)(Math.random()*7)
   }
 }
 class Oddball implements Particle
@@ -80,8 +84,10 @@ class Oddball implements Particle
 }
 class Jumbo extends Normal //uses inheritance
 {
-  int jX, jY;
-  Jumbo()
+  public void show()
   {
+    noStroke();
+    fill(nColor);
+    ellipse((float)nX, (float)nY, 20, 20);
   }
 }
