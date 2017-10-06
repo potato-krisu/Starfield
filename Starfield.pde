@@ -56,13 +56,13 @@ class Oddball implements Particle
     oX = -5;
     oY = -5;
     oSpeed = (Math.random()*10)+10;
-    oAngle = Math.PI *0.4* Math.random();
+    oAngle = Math.PI * 0.5 * Math.random();
   }
   public void move()
   {
     oX = oX + (Math.cos(oAngle)* oSpeed);
     oY = oY + (Math.sin(oAngle)* oSpeed);
-    if (oX > 640 || oY > 640)
+    if (oX > 630 || oY > 630)
     {
       oX = -5;
       oY = -5;
