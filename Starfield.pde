@@ -53,20 +53,29 @@ class Oddball implements Particle
   double oX, oY, oSpeed, oAngle;
   Oddball()
   {
-    oX = (Math.random()*600);
-    oY = (Math.random()*40)-50;
-    oSpeed = Math.random()*20;
-    oAngle = Math.PI * 2 * Math.random();
+    oX = -5;
+    oY = -5;
+    oSpeed = (Math.random()*10)+10;
+    oAngle = Math.PI *0.4* Math.random();
   }
   public void move()
   {
-    oX = oX + (Math.cos(oAngle) * oSpeed); 
-    oY = oY + (Math.sin(oAngle) * oSpeed);
+    oX = oX + (Math.cos(oAngle)* oSpeed);
+    oY = oY + (Math.sin(oAngle)* oSpeed);
+    if (oX > 640 || oY > 640)
+    {
+      oX = -5;
+      oY = -5;
+      oSpeed = (Math.random()*10)+10;
+      oAngle = Math.PI *0.4* Math.random();
+      oX = oX + (Math.cos(oAngle)* oSpeed);
+      oY = oY + (Math.sin(oAngle)* oSpeed);
+    }
   }
   public void show()
   {
     fill(255);
-    ellipse((float)oX, (float)oY, 20, 20);
+    ellipse((float)oX, (float)oY, 10, 10);
   }
 }
 class Jumbo extends Normal //uses inheritance
