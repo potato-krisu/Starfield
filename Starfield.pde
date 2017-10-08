@@ -1,10 +1,10 @@
-Normal[] stars= new Normal[1000];
+Normal[] stars= new Normal[500];
 Oddball odd = new Oddball();
 Jumbo jum = new Jumbo();
 void setup()
 {
   size(600, 600);
-  for (int i = 0; i < 1000; i++)
+  for (int i = 0; i < 500; i++)
   {
     stars[i] = new Normal();
   }
@@ -16,10 +16,16 @@ void draw()
   odd.move();
   jum.show();
   jum.move();
-  for (int i = 0; i < 1000; i++)
+  for (int i = 0; i < 500; i++)
   {
     stars[i].show();
     stars[i].move();
+    if (stars[i].nX > 1000 || stars[i].nX < -400 || stars[i].nY > 1000 || stars[i].nY < -400)
+    {
+      stars[i].nX = 300;
+      stars[i].nY= 300;
+      stars[i].move();
+    }
   }
 }
 interface Particle
